@@ -13,12 +13,26 @@ spec:
   ingress:
   - from:
     - ipBlock:
-        cidr: 0.0.0.0/0  
+        cidr: 0.0.0.0/0
+    ports:
+    - protocol: TCP
+      port: 80
   egress:
   - to:
-    - podSelector:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: backend
+      podSelector:
         matchLabels:
           app: backend
     ports:
-    - port: 80
-      protocol: TCP
+    - protocol: TCP
+      port: 80
+  - to:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+    ports:
+    - protocol: TCP
+      port: 53  
+    - protocol: UDP
+      port: 53

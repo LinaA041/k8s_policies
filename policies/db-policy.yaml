@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: db-ingress-from-backend
+  name: db-policy
   namespace: database
 spec:
   podSelector:
@@ -9,14 +9,16 @@ spec:
       app: db
   policyTypes:
   - Ingress
+  - Egress
   ingress:
   - from:
     - namespaceSelector:
         matchLabels:
-          name: backend
+          kubernetes.io/metadata.name: backend
       podSelector:
         matchLabels:
           app: backend
     ports:
     - protocol: TCP
       port: 3306
+  egress: []
