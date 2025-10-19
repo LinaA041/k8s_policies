@@ -32,7 +32,7 @@ spec:
     ports:
     - protocol: TCP
       port: 3306
-  - to:
+  exit- to:
     - ipBlock:
         cidr: 0.0.0.0/0
     ports:
