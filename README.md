@@ -83,23 +83,23 @@ The policies presented below were applied in order to create and validate them o
 
     - Ingress from the Internet (ipBlock 0.0.0.0/0) to port 80,
 
-- Egress to backend:80,
+    - Egress to backend:80,
 
-- Egress to CoreDNS (kube-system / k8s-app=kube-dns) TCP/UDP 53 (for internal resolution).
+    - Egress to CoreDNS (kube-system / k8s-app=kube-dns) TCP/UDP 53 (for internal resolution).
 
 - Backend policy:
 
-- Ingress only from frontend:80,
+    - Ingress only from frontend:80,
 
-- Egress only to database:3306,
+    - Egress only to database:3306,
 
-- Egress to CoreDNS 53.
+    - Egress to CoreDNS 53.
 
 - DB policy:
 
-- Ingress only from backend:3306,
+    - Ingress only from backend:3306,
 
-- Egress: [] (none).
+    - Egress: [] (none).
 
 Each policy was applied as follows:
 
